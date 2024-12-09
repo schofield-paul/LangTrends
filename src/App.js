@@ -24,6 +24,11 @@ ChartJS.register(
 );
 
 function App() {
+  const colorMap = {
+    apple: "rgb(255, 99, 132)", // red
+    banana: "rgb(54, 162, 235)", // blue
+  };
+
   const [query, setQuery] = useState("");
   const [chartData, setChartData] = useState(null);
 
@@ -67,7 +72,7 @@ function App() {
       return {
         label: ng.ngram,
         data: years.map((year) => frequenciesByYear[year] || 0),
-        borderColor: getRandomColor(),
+        borderColor: colorMap[ng.ngram] || getRandomColor(),
         backgroundColor: "rgba(0,0,0,0)",
       };
     });
@@ -102,7 +107,18 @@ function App() {
             placeholder="e.g. apple, banana"
             style={{ padding: "10px", width: "300px", marginRight: "10px" }}
           />
-          <button onClick={handleSearch} style={{ padding: "10px 20px" }}>
+          <button
+            onClick={handleSearch}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#4CAF50",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              transition: "background-color 0.3s",
+            }}
+          >
             Search
           </button>
         </div>
